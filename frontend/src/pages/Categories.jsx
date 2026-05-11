@@ -4,6 +4,13 @@ import PageTransition from '../components/PageTransition';
 import { categories } from '../data/products';
 
 const Categories = () => {
+  const [requested, setRequested] = React.useState(false);
+
+  const handleRequest = () => {
+    setRequested(true);
+    setTimeout(() => setRequested(false), 3000);
+  };
+
   return (
     <PageTransition>
       <div className="pt-28 pb-20 min-h-screen bg-gray-50">
@@ -26,8 +33,12 @@ const Categories = () => {
             
             <h2 className="text-3xl font-bold mb-6 relative z-10">Don't see what you're looking for?</h2>
             <p className="text-white/80 mb-8 max-w-lg mx-auto relative z-10">We are constantly adding new categories and products to our catalog. Request a product and we'll try to stock it!</p>
-            <button className="bg-white text-primary px-10 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all shadow-xl relative z-10">
-              Request a Category
+            <button 
+              onClick={handleRequest}
+              className={`bg-white text-primary px-10 py-4 rounded-2xl font-bold hover:bg-gray-100 transition-all shadow-xl relative z-10 ${requested ? 'opacity-50 cursor-not-allowed' : ''}`}
+              disabled={requested}
+            >
+              {requested ? 'Request Sent! ✅' : 'Request a Category'}
             </button>
           </div>
         </div>
