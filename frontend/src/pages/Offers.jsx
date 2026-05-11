@@ -1,10 +1,12 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 import { offers } from '../data/products';
 import PageTransition from '../components/PageTransition';
 import { Zap, Ticket, Clock, ArrowRight } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const Offers = () => {
+  const navigate = useNavigate();
   return (
     <PageTransition>
       <div className="pt-28 pb-20 min-h-screen bg-gray-50">
@@ -40,7 +42,10 @@ const Offers = () => {
                         <p className="text-xl font-mono font-black text-white">{offer.code}</p>
                       </div>
                     </div>
-                    <button className="bg-white text-text-main hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all shadow-xl active:scale-95 flex items-center gap-2">
+                    <button 
+                      onClick={() => navigate('/shop')}
+                      className="bg-white text-text-main hover:bg-gray-100 px-8 py-4 rounded-2xl font-bold transition-all shadow-xl active:scale-95 flex items-center gap-2"
+                    >
                       Shop Now
                       <ArrowRight size={20} />
                     </button>
@@ -76,7 +81,10 @@ const Offers = () => {
                   </div>
                   <h3 className="text-xl font-bold text-text-main mb-2">Weekend Breakfast Special</h3>
                   <p className="text-text-muted text-sm mb-6">Get 20% cashback on all bakery and dairy products this weekend.</p>
-                  <button className="w-full py-4 rounded-2xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all">
+                  <button 
+                    onClick={() => navigate('/shop')}
+                    className="w-full py-4 rounded-2xl border-2 border-primary text-primary font-bold hover:bg-primary hover:text-white transition-all"
+                  >
                     View Details
                   </button>
                 </div>
