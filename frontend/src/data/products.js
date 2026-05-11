@@ -1,7 +1,7 @@
 export const categories = [
   { id: 1, name: 'Fruits', image: 'https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=400', count: 14 },
   { id: 2, name: 'Vegetables', image: 'https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400', count: 14 },
-  { id: 3, name: 'Dairy', image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg?auto=compress&cs=tinysrgb&w=400', count: 8 },
+  { id: 3, name: 'Dairy', image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg?auto=compress&cs=tinysrgb&w=400', count: 7 },
   { id: 4, name: 'Snacks', image: 'https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=400', count: 5 },
   { id: 5, name: 'Bakery', image: 'https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400', count: 4 },
   { id: 6, name: 'Beverages', image: 'https://images.pexels.com/photos/1234901/pexels-photo-1234901.jpeg?auto=compress&cs=tinysrgb&w=400', count: 5 },
@@ -662,22 +662,6 @@ export const products = [
     isBestSeller: false,
     isFreshArrival: true,
     isDailyEssential: false,
-  },
-  {
-    id: 57,
-    name: 'Greek Style Yogurt',
-    category: 'Dairy',
-    price: 85,
-    originalPrice: 110,
-    discount: '22% OFF',
-    rating: 4.8,
-    reviews: 320,
-    image: 'https://images.pexels.com/photos/6660144/pexels-photo-6660144.jpeg?auto=compress&cs=tinysrgb&w=800',
-    description: 'Thick and creamy unsweetened Greek yogurt.',
-    isTrending: true,
-    isBestSeller: false,
-    isFreshArrival: false,
-    isDailyEssential: true,
   },
   // SNACKS - MISSING
   {
