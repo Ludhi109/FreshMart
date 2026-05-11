@@ -1,11 +1,11 @@
 export const categories = [
-  { id: 1, name: 'Fruits', image: 'https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=400', count: 45 },
-  { id: 2, name: 'Vegetables', image: 'https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400', count: 32 },
-  { id: 3, name: 'Dairy', image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg?auto=compress&cs=tinysrgb&w=400', count: 18 },
-  { id: 4, name: 'Snacks', image: 'https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=400', count: 24 },
-  { id: 5, name: 'Bakery', image: 'https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400', count: 15 },
-  { id: 6, name: 'Beverages', image: 'https://images.pexels.com/photos/1234901/pexels-photo-1234901.jpeg?auto=compress&cs=tinysrgb&w=400', count: 20 },
-  { id: 7, name: 'Household Items', image: 'https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=400', count: 12 },
+  { id: 1, name: 'Fruits', image: 'https://images.pexels.com/photos/1132047/pexels-photo-1132047.jpeg?auto=compress&cs=tinysrgb&w=400', count: 14 },
+  { id: 2, name: 'Vegetables', image: 'https://images.pexels.com/photos/1435904/pexels-photo-1435904.jpeg?auto=compress&cs=tinysrgb&w=400', count: 14 },
+  { id: 3, name: 'Dairy', image: 'https://images.pexels.com/photos/248412/pexels-photo-248412.jpeg?auto=compress&cs=tinysrgb&w=400', count: 8 },
+  { id: 4, name: 'Snacks', image: 'https://images.pexels.com/photos/1583884/pexels-photo-1583884.jpeg?auto=compress&cs=tinysrgb&w=400', count: 5 },
+  { id: 5, name: 'Bakery', image: 'https://images.pexels.com/photos/209206/pexels-photo-209206.jpeg?auto=compress&cs=tinysrgb&w=400', count: 4 },
+  { id: 6, name: 'Beverages', image: 'https://images.pexels.com/photos/1234901/pexels-photo-1234901.jpeg?auto=compress&cs=tinysrgb&w=400', count: 5 },
+  { id: 7, name: 'Household Items', image: 'https://images.pexels.com/photos/4239031/pexels-photo-4239031.jpeg?auto=compress&cs=tinysrgb&w=400', count: 3 },
 ];
 
 export const products = [
