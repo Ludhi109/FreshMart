@@ -1,0 +1,21 @@
+services:
+  # Frontend Service
+  - type: web
+    name: freshmart-frontend
+    runtime: static
+    buildCommand: npm run install-all && npm run build-frontend
+    publishPath: frontend/dist
+    rootContext: .
+
+  # Backend Service
+  - type: web
+    name: freshmart-backend
+    runtime: node
+    buildCommand: npm install --prefix backend
+    startCommand: npm run start-backend
+    rootContext: .
+    envVars:
+      - key: PORT
+        value: 10000
+      - key: NODE_ENV
+        value: production
