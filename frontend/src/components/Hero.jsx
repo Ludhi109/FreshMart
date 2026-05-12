@@ -52,24 +52,33 @@ const Hero = () => {
 
             {/* Delivery Highlights */}
             <div className="grid grid-cols-3 gap-6">
-              <div className="flex flex-col gap-2">
-                <div className="w-12 h-12 bg-white shadow-md rounded-xl flex items-center justify-center text-primary">
+              <Link to="/about" className="flex flex-col gap-2 group cursor-pointer">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-12 h-12 bg-white shadow-md rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300"
+                >
                   <Truck size={24} />
-                </div>
-                <span className="text-xs font-bold text-text-main">Fast Delivery</span>
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="w-12 h-12 bg-white shadow-md rounded-xl flex items-center justify-center text-primary">
+                </motion.div>
+                <span className="text-xs font-bold text-text-main group-hover:text-primary transition-colors">Fast Delivery</span>
+              </Link>
+              <Link to="/contact" className="flex flex-col gap-2 group cursor-pointer">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: -5 }}
+                  className="w-12 h-12 bg-white shadow-md rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300"
+                >
                   <Clock size={24} />
-                </div>
-                <span className="text-xs font-bold text-text-main">24/7 Support</span>
-              </div>
-              <div className="flex flex-col gap-2">
-                <div className="w-12 h-12 bg-white shadow-md rounded-xl flex items-center justify-center text-primary">
+                </motion.div>
+                <span className="text-xs font-bold text-text-main group-hover:text-primary transition-colors">24/7 Support</span>
+              </Link>
+              <Link to="/about" className="flex flex-col gap-2 group cursor-pointer">
+                <motion.div 
+                  whileHover={{ scale: 1.1, rotate: 5 }}
+                  className="w-12 h-12 bg-white shadow-md rounded-xl flex items-center justify-center text-primary group-hover:bg-primary group-hover:text-white transition-all duration-300"
+                >
                   <ShieldCheck size={24} />
-                </div>
-                <span className="text-xs font-bold text-text-main">Secure Payment</span>
-              </div>
+                </motion.div>
+                <span className="text-xs font-bold text-text-main group-hover:text-primary transition-colors">Secure Payment</span>
+              </Link>
             </div>
           </motion.div>
 
