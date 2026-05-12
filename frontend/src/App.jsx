@@ -26,6 +26,7 @@ import Offers from './pages/Offers';
 import About from './pages/About';
 import Contact from './pages/Contact';
 import MyOrders from './pages/MyOrders';
+import Wishlist from './pages/Wishlist';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -38,6 +39,7 @@ const AnimatedRoutes = () => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/checkout" element={<Checkout />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/about" element={<About />} />
