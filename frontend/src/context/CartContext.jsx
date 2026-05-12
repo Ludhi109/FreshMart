@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import toast from 'react-hot-toast';
 
 const CartContext = createContext();
 
@@ -36,16 +37,24 @@ export const CartProvider = ({ children }) => {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
+        toast.success(`Updated ${product.name} quantity!`);
         return prevCart.map((item) =>
           item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
         );
       }
+      toast.success(`${product.name} added to cart!`);
       return [...prevCart, { ...product, quantity }];
     });
   };
 
   const removeFromCart = (productId) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== productId));
+    setCart((prevCart) => {
+      const itemToRemove = prevCart.find(item => item.id === productId);
+      if (itemToRemove) {
+        toast.error(`${itemToRemove.name} removed from cart`);
+      }
+      return prevCart.filter((item) => item.id !== productId);
+    });
   };
 
   const updateQuantity = (productId, quantity) => {
@@ -58,14 +67,19 @@ export const CartProvider = ({ children }) => {
     );
   };
 
-  const clearCart = () => setCart([]);
+  const clearCart = () => {
+    setCart([]);
+    toast.success('Cart cleared');
+  };
 
   const toggleWishlist = (product) => {
     setWishlist((prevWishlist) => {
       const exists = prevWishlist.find((item) => item.id === product.id);
       if (exists) {
+        toast.error(`${product.name} removed from wishlist`);
         return prevWishlist.filter((item) => item.id !== product.id);
       }
+      toast.success(`${product.name} added to wishlist!`);
       return [...prevWishlist, product];
     });
   };
@@ -78,6 +92,7 @@ export const CartProvider = ({ children }) => {
       status: 'Processing'
     };
     setOrders((prevOrders) => [newOrder, ...prevOrders]);
+    toast.success('Order placed successfully!');
   };
 
   const cartTotal = cart.reduce((total, item) => total + item.price * item.quantity, 0);

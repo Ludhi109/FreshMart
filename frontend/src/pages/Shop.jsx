@@ -1,21 +1,23 @@
-import React, { useState, useMemo } from 'react';
+import React, { useState, useMemo, useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
 import ProductCard from '../components/ProductCard';
 import PageTransition from '../components/PageTransition';
 import { products, categories } from '../data/products';
 import { Filter, Search, SlidersHorizontal, ChevronDown } from 'lucide-react';
+import { useSearch } from '../context/SearchContext';
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryFilter = searchParams.get('category') || 'all';
-  const [searchQuery, setSearchQuery] = useState('');
+  const { searchQuery, setSearchQuery } = useSearch();
   const [sortBy, setSortBy] = useState('featured');
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {
       const matchesCategory = categoryFilter === 'all' || p.category.toLowerCase() === categoryFilter.toLowerCase();
       const matchesSearch = p.name.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                           p.description.toLowerCase().includes(searchQuery.toLowerCase());
+                           p.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+                           p.category.toLowerCase().includes(searchQuery.toLowerCase());
       return matchesCategory && matchesSearch;
     }).sort((a, b) => {
       if (sortBy === 'price-low') return a.price - b.price;

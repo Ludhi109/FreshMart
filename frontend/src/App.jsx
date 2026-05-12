@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import { AnimatePresence } from 'framer-motion';
+import { Toaster } from 'react-hot-toast';
 
 // Context
 import { CartProvider } from './context/CartContext';
+import { AuthProvider } from './context/AuthContext';
+import { SearchProvider } from './context/SearchContext';
 
 // Components
 import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import BackToTop from './components/BackToTop';
+import ScrollToTop from './components/ScrollToTop';
+import LoadingSpinner from './components/LoadingSpinner';
 
 // Pages
 import Home from './pages/Home';
@@ -46,19 +51,45 @@ const AnimatedRoutes = () => {
 };
 
 function App() {
+  const [initialLoading, setInitialLoading] = useState(true);
+
+  useEffect(() => {
+    // Simulate initial page load
+    const timer = setTimeout(() => {
+      setInitialLoading(false);
+    }, 1500);
+    return () => clearTimeout(timer);
+  }, []);
+
   return (
-    <CartProvider>
-      <Router>
-        <div className="flex flex-col min-h-screen">
-          <Navbar />
-          <main className="flex-grow">
-            <AnimatedRoutes />
-          </main>
-          <Footer />
-          <BackToTop />
-        </div>
-      </Router>
-    </CartProvider>
+    <AuthProvider>
+      <CartProvider>
+        <SearchProvider>
+          <Router>
+            <ScrollToTop />
+            <Toaster position="bottom-right" toastOptions={{
+              style: {
+                background: '#333',
+                color: '#fff',
+                borderRadius: '16px',
+                padding: '12px 24px',
+              }
+            }} />
+            <AnimatePresence>
+              {initialLoading && <LoadingSpinner />}
+            </AnimatePresence>
+            <div className="flex flex-col min-h-screen">
+              <Navbar />
+              <main className="flex-grow">
+                <AnimatedRoutes />
+              </main>
+              <Footer />
+              <BackToTop />
+            </div>
+          </Router>
+        </SearchProvider>
+      </CartProvider>
+    </AuthProvider>
   );
 }
 
