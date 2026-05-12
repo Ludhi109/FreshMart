@@ -55,6 +55,7 @@ const Navbar = () => {
     { name: 'Offers', path: '/offers' },
     { name: 'Wishlist', path: '/wishlist' },
     { name: 'My Orders', path: '/orders' },
+    { name: 'Profile', path: '/profile' },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
