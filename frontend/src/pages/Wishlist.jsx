@@ -8,6 +8,9 @@ import { motion, AnimatePresence } from 'framer-motion';
 const Wishlist = () => {
   const { wishlist, toggleWishlist, addToCart } = useCart();
 
+  // Safety check to ensure wishlist is always an array
+  const safeWishlist = Array.isArray(wishlist) ? wishlist : [];
+
   return (
     <PageTransition>
       <div className="pt-28 pb-20 min-h-screen bg-gray-50">
@@ -17,10 +20,10 @@ const Wishlist = () => {
             My Wishlist
           </h1>
 
-          {wishlist.length > 0 ? (
+          {safeWishlist.length > 0 ? (
             <div className="grid gap-6">
               <AnimatePresence mode='popLayout'>
-                {wishlist.map((item) => (
+                {safeWishlist.map((item) => (
                   <motion.div
                     key={item.id}
                     layout
