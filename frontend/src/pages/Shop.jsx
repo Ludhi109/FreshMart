@@ -4,13 +4,17 @@ import ProductCard from '../components/ProductCard';
 import PageTransition from '../components/PageTransition';
 import { products, categories } from '../data/products';
 import { Filter, Search, SlidersHorizontal, ChevronDown } from 'lucide-react';
-import { useSearch } from '../context/SearchContext';
 
 const Shop = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const categoryFilter = searchParams.get('category') || 'all';
-  const { searchQuery, setSearchQuery } = useSearch();
+  const urlSearch = searchParams.get('search') || '';
+  const [searchQuery, setSearchQuery] = useState(urlSearch);
   const [sortBy, setSortBy] = useState('featured');
+
+  useEffect(() => {
+    setSearchQuery(urlSearch);
+  }, [urlSearch]);
 
   const filteredProducts = useMemo(() => {
     return products.filter((p) => {

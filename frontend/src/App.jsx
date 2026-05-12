@@ -6,7 +6,6 @@ import { Toaster } from 'react-hot-toast';
 // Context
 import { CartProvider } from './context/CartContext';
 import { AuthProvider } from './context/AuthContext';
-import { SearchProvider } from './context/SearchContext';
 
 // Components
 import Navbar from './components/Navbar';
@@ -27,7 +26,6 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import MyOrders from './pages/MyOrders';
 import Wishlist from './pages/Wishlist';
-import Profile from './pages/Profile';
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -40,13 +38,12 @@ const AnimatedRoutes = () => {
         <Route path="/categories" element={<Categories />} />
         <Route path="/product/:id" element={<ProductDetails />} />
         <Route path="/cart" element={<Cart />} />
-        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/checkout" element={<Checkout />} />
-        <Route path="/profile" element={<Profile />} />
         <Route path="/offers" element={<Offers />} />
         <Route path="/about" element={<About />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/orders" element={<MyOrders />} />
+        <Route path="/wishlist" element={<Wishlist />} />
         <Route path="/about-us" element={<About />} />
         <Route path="/contact-us" element={<Contact />} />
       </Routes>
@@ -55,43 +52,47 @@ const AnimatedRoutes = () => {
 };
 
 function App() {
-  const [initialLoading, setInitialLoading] = useState(true);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    // Simulate initial page load
+    // Simulate initial app load
     const timer = setTimeout(() => {
-      setInitialLoading(false);
+      setIsLoading(false);
     }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
+  if (isLoading) {
+    return <LoadingSpinner fullPage />;
+  }
+
   return (
     <AuthProvider>
       <CartProvider>
-        <SearchProvider>
-          <Router>
+        <Router>
+          <div className="flex flex-col min-h-screen">
             <ScrollToTop />
-            <Toaster position="bottom-right" toastOptions={{
-              style: {
-                background: '#333',
-                color: '#fff',
-                borderRadius: '16px',
-                padding: '12px 24px',
-              }
-            }} />
-            <AnimatePresence>
-              {initialLoading && <LoadingSpinner />}
-            </AnimatePresence>
-            <div className="flex flex-col min-h-screen">
-              <Navbar />
-              <main className="flex-grow">
-                <AnimatedRoutes />
-              </main>
-              <Footer />
-              <BackToTop />
-            </div>
-          </Router>
-        </SearchProvider>
+            <Toaster 
+              position="bottom-right"
+              toastOptions={{
+                duration: 3000,
+                style: {
+                  background: '#333',
+                  color: '#fff',
+                  borderRadius: '16px',
+                  padding: '12px 24px',
+                  fontWeight: 'bold',
+                },
+              }}
+            />
+            <Navbar />
+            <main className="flex-grow">
+              <AnimatedRoutes />
+            </main>
+            <Footer />
+            <BackToTop />
+          </div>
+        </Router>
       </CartProvider>
     </AuthProvider>
   );

@@ -34,27 +34,35 @@ export const CartProvider = ({ children }) => {
   }, [orders]);
 
   const addToCart = (product, quantity = 1) => {
+    let isUpdate = false;
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
-        toast.success(`Updated ${product.name} quantity!`);
+        isUpdate = true;
         return prevCart.map((item) =>
           item.id === product.id ? { ...item, quantity: item.quantity + quantity } : item
         );
       }
-      toast.success(`${product.name} added to cart!`);
       return [...prevCart, { ...product, quantity }];
     });
+    
+    if (isUpdate) {
+      toast.success(`Updated ${product.name} quantity!`);
+    } else {
+      toast.success(`${product.name} added to cart!`);
+    }
   };
 
   const removeFromCart = (productId) => {
     setCart((prevCart) => {
-      const itemToRemove = prevCart.find(item => item.id === productId);
-      if (itemToRemove) {
-        toast.error(`${itemToRemove.name} removed from cart`);
+      const item = prevCart.find(i => i.id === productId);
+      if (item) {
+        // We can't easily toast here without knowing the name, 
+        // but we can do it after the state update if we find the item first.
       }
       return prevCart.filter((item) => item.id !== productId);
     });
+    toast.error(`Item removed from cart`);
   };
 
   const updateQuantity = (productId, quantity) => {
@@ -73,15 +81,22 @@ export const CartProvider = ({ children }) => {
   };
 
   const toggleWishlist = (product) => {
+    let isAdding = false;
     setWishlist((prevWishlist) => {
       const exists = prevWishlist.find((item) => item.id === product.id);
       if (exists) {
-        toast.error(`${product.name} removed from wishlist`);
+        isAdding = false;
         return prevWishlist.filter((item) => item.id !== product.id);
       }
-      toast.success(`${product.name} added to wishlist!`);
+      isAdding = true;
       return [...prevWishlist, product];
     });
+
+    if (isAdding) {
+      toast.success(`${product.name} added to wishlist!`);
+    } else {
+      toast.error(`${product.name} removed from wishlist`);
+    }
   };
 
   const addOrder = (orderData) => {

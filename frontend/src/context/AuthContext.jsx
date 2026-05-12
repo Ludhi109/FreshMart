@@ -11,8 +11,6 @@ export const AuthProvider = ({ children }) => {
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
-  const [loading, setLoading] = useState(false);
-
   useEffect(() => {
     if (user) {
       localStorage.setItem('freshmart_user', JSON.stringify(user));
@@ -21,44 +19,16 @@ export const AuthProvider = ({ children }) => {
     }
   }, [user]);
 
-  const login = async (email, password) => {
-    setLoading(true);
-    // Simulating API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const userData = {
-          id: '1',
-          name: 'John Doe',
-          email: email,
-          avatar: 'https://api.dicebear.com/7.x/avataaars/svg?seed=John',
-          location: 'Hyderabad, Jubilee Hills'
-        };
-        setUser(userData);
-        setLoading(false);
-        toast.success('Login Successful! Welcome back.');
-        resolve(userData);
-      }, 1000);
-    });
+  const login = (userData) => {
+    // For demo purposes, we'll just store the user data
+    setUser(userData);
+    toast.success(`Welcome back, ${userData.name}!`);
   };
 
-  const signup = async (name, email, password) => {
-    setLoading(true);
-    // Simulating API call
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        const userData = {
-          id: Date.now().toString(),
-          name: name,
-          email: email,
-          avatar: `https://api.dicebear.com/7.x/avataaars/svg?seed=${name}`,
-          location: 'Hyderabad, India'
-        };
-        setUser(userData);
-        setLoading(false);
-        toast.success('Account created successfully!');
-        resolve(userData);
-      }, 1000);
-    });
+  const signup = (userData) => {
+    // For demo purposes, we'll just store the user data
+    setUser(userData);
+    toast.success(`Account created! Welcome, ${userData.name}!`);
   };
 
   const logout = () => {
@@ -67,7 +37,7 @@ export const AuthProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, login, signup, logout, loading }}>
+    <AuthContext.Provider value={{ user, login, signup, logout }}>
       {children}
     </AuthContext.Provider>
   );
